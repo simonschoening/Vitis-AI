@@ -19,6 +19,23 @@ u50: release_u50_xo
 u280: release_u280_xo
 	cd ./bit_gen/constraint  && cat opt_design.pre.common.u280.tcl HBM_RS_pblock.xdc v3e.u280.timing.slr0.xdc v3e.u280.physical.slr0.4ENGINE2M.xdc v3e.u280.timing.slr1.xdc v3e.u280.physical.slr1.5ENGINE2M.xdc v3e.u280.timing.slr2.xdc v3e.u280.physical.slr2.5ENGINE2M.xdc    > opt_design.pre.u280.tcl
 	cd ./bit_gen; v++ -t hw --platform xilinx_u280_xdma_201920_3 --save-temps --temp_dir u280_imp -l --config "./script/cons_u280.ini" -o u280.xclbin ../xo_release/DPUCAHX8H_4ENGINE.xo ../xo_release/DPUCAHX8H_5ENGINE.xo
+u280_1engine: release_u280_xo
+	cd ./bit_gen/constraint  && cat opt_design.pre.common.u280.tcl HBM_RS_pblock.xdc v3e.u280.timing.slr0.xdc > opt_design.pre.u280_1engine.tcl
+	cd ./bit_gen; v++ -t hw --platform xilinx_u280_xdma_201920_3 --save-temps --temp_dir u280_imp_1engine -l --config "./script/cons_u280_1engine.ini" -o u280_1engine.xclbin ../xo_release/DPUCAHX8H_1ENGINE.xo
+u280_2engine: release_u280_xo
+	cd ./bit_gen/constraint  && cat opt_design.pre.common.u280.tcl HBM_RS_pblock.xdc v3e.u280.timing.slr0.xdc > opt_design.pre.u280_2engine.tcl
+	cd ./bit_gen; v++ -t hw --platform xilinx_u280_xdma_201920_3 --save-temps --temp_dir u280_imp_2engine -l --config "./script/cons_u280_2engine.ini" -o u280_2engine.xclbin ../xo_release/DPUCAHX8H_2ENGINE.xo
+u280_3engine: release_u280_xo
+	cd ./bit_gen/constraint  && cat opt_design.pre.common.u280.tcl HBM_RS_pblock.xdc v3e.u280.timing.slr0.xdc > opt_design.pre.u280_3engine.tcl
+	cd ./bit_gen; v++ -t hw --platform xilinx_u280_xdma_201920_3 --save-temps --temp_dir u280_imp_3engine -l --config "./script/cons_u280_3engine.ini" -o u280_3engine.xclbin ../xo_release/DPUCAHX8H_3ENGINE.xo
+u280_4engine: release_u280_xo
+	cd ./bit_gen/constraint  && cat opt_design.pre.common.u280.tcl HBM_RS_pblock.xdc v3e.u280.timing.slr0.xdc > opt_design.pre.u280_4engine.tcl
+	cd ./bit_gen; v++ -t hw --platform xilinx_u280_xdma_201920_3 --save-temps --temp_dir u280_imp_4engine -l --config "./script/cons_u280_4engine.ini" -o u280_4engine.xclbin ../xo_release/DPUCAHX8H_4ENGINE.xo
+u280_5engine: release_u280_xo
+	cd ./bit_gen/constraint  && cat opt_design.pre.common.u280.tcl HBM_RS_pblock.xdc v3e.u280.timing.slr0.xdc > opt_design.pre.u280_5engine.tcl
+	cd ./bit_gen; v++ -t hw --platform xilinx_u280_xdma_201920_3 --save-temps --temp_dir u280_imp_5engine -l --config "./script/cons_u280_5engine.ini" -o u280_5engine.xclbin ../xo_release/DPUCAHX8H_5ENGINE.xo
+
+
 
 release_u50_xo:
 	@ echo "packaging DPUCAHX8H_3ENGINE XO-IP ..."
@@ -33,8 +50,14 @@ release_u50lv_xo:
 release_u280_xo:
 	@ echo "packaging DPUCAHX8H_5ENGINE XO-IP & DPUCAHX8H_4ENGINE XO-IP..."
 	cd xo_release &&\
-	rm -rf DPUCAHX8H_4ENGINE.xo && \
-	rm -rf DPUCAHX8H_5ENGINE.xo && \
-	vivado -mode tcl  -source ./script/gen_DPUCAHX8H_ENGINE_xo.tcl -log ./log/vivado.log -jou ./log/vivado.jou -tclargs  4ENGINE 250 u280 && \
-	vivado -mode tcl  -source ./script/gen_DPUCAHX8H_ENGINE_xo.tcl -log ./log/vivado.log -jou ./log/vivado.jou -tclargs  5ENGINE 250 u280
+	rm -rf DPUCAHX8H_1ENGINE.xo && \
+	# rm -rf DPUCAHX8H_2ENGINE.xo && \
+	# rm -rf DPUCAHX8H_3ENGINE.xo && \
+	# rm -rf DPUCAHX8H_4ENGINE.xo && \
+	# rm -rf DPUCAHX8H_5ENGINE.xo && \
+	vivado -mode tcl  -source ./script/gen_DPUCAHX8H_ENGINE_xo.tcl -log ./log/vivado.log -jou ./log/vivado.jou -tclargs  1ENGINE 300 u280
+	# vivado -mode tcl  -source ./script/gen_DPUCAHX8H_ENGINE_xo.tcl -log ./log/vivado.log -jou ./log/vivado.jou -tclargs  2ENGINE 300 u280 && \
+	# vivado -mode tcl  -source ./script/gen_DPUCAHX8H_ENGINE_xo.tcl -log ./log/vivado.log -jou ./log/vivado.jou -tclargs  3ENGINE 300 u280 && \
+	# vivado -mode tcl  -source ./script/gen_DPUCAHX8H_ENGINE_xo.tcl -log ./log/vivado.log -jou ./log/vivado.jou -tclargs  4ENGINE 300 u280 && \
+	# vivado -mode tcl  -source ./script/gen_DPUCAHX8H_ENGINE_xo.tcl -log ./log/vivado.log -jou ./log/vivado.jou -tclargs  5ENGINE 300 u280
 

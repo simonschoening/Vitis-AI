@@ -4,7 +4,7 @@
     <ports>
       <port name="s_axi_control" mode="slave"  range="0x1000"             dataWidth="32"  portType="addressable" base="0x0"/>
       <port name="DPU_AXI_0"     mode="master" range="0xFFFFFFFFFFFFFFFF" dataWidth="256" portType="addressable" base="0x0"/>
-      <port name="DPU_AXI_1"     mode="master" range="0xFFFFFFFFFFFFFFFF" dataWidth="256" portType="addressable" base="0x0"/>
+      <!-- <port name="DPU_AXI_1"     mode="master" range="0xFFFFFFFFFFFFFFFF" dataWidth="256" portType="addressable" base="0x0"/> -->
       <port name="DPU_AXI_I0"     mode="master" range="0xFFFFFFFFFFFFFFFF" dataWidth="256" portType="addressable" base="0x0"/>
       <port name="DPU_AXI_W0"    mode="master" range="0xFFFFFFFFFFFFFFFF" dataWidth="256" portType="addressable" base="0x0"/>
       <port name="DPU_AXI_W1"    mode="master" range="0xFFFFFFFFFFFFFFFF" dataWidth="256" portType="addressable" base="0x0"/>
