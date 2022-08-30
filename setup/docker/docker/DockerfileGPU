@@ -1,4 +1,4 @@
-FROM nvidia/cuda:10.0-cudnn7-runtime-ubuntu18.04
+FROM nvidia/cuda:10.0-cudnn7-devel-ubuntu18.04
 env DEBIAN_FRONTEND=noninteractive
 SHELL ["/bin/bash", "-c"]
 ENV TZ=America/Denver
@@ -23,6 +23,8 @@ ARG VAI_DEB_CHANNEL=""
 ENV LANG en_US.UTF-8
 ENV LANGUAGE en_US:en
 ENV LC_ALL en_US.UTF-8
+
+RUN rm /etc/apt/sources.list.d/cuda.list
 
 RUN chmod 1777 /tmp \
     && mkdir /scratch \
